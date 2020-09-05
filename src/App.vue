@@ -24,16 +24,19 @@
           <p>组件传参 
               <router-link to="/ZJ_Param1/uname789">组件传参(布尔模式)</router-link>
               <router-link to="/ZJ_Param2/uname789">组件传参(对象模式)</router-link>
-              <router-link to="/ZJ_Param3?uname=u147">组件传参(函数模式)</router-link>
+              <router-link to="/ZJ_Param3?uname=u147">组件传参(函数模式)</router-link><br/>
+              <button @click="to_route('FetchData')">FetchData</button>
           </p>
         <hr/>
         <!-- 路由出口 -->
         <!-- 路由匹配到的组件将渲染在这里 -->
-        <router-view></router-view>
+       <transition name="slide-fade"> <router-view></router-view></transition>
         <hr/>
-        <router-view name="a">a</router-view>
-        <router-view name="b">b</router-view>
-        <router-view name="c">c</router-view>
+        <transition-group name="component-fade" mode="in-out">
+        <router-view name="a" key="a">a</router-view>
+        <router-view name="b" key="b">b</router-view>
+        <router-view name="c" key="c">c</router-view>
+        </transition-group>
         <hr/>
       </div>
 </template>
@@ -79,5 +82,25 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 0px;
+}
+/* 可以设置不同的进入和离开动画 */
+/* 设置持续时间和动画函数 */
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: opacity .9s ease;
+}
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active for below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
