@@ -8,8 +8,9 @@
 <script> 
 export default {
   name: 'User' , 
-    beforeRouteUpdate (to, from,next) {
+    beforeRouteUpdate (to, from,next) {//组件内 导航守卫
       // 对路由变化作出响应...
+      console.log('组件内 导航守卫')
       // console.log(from)
       // console.log(to)
       // console.log(next) 

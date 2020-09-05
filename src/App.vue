@@ -49,24 +49,22 @@ export default {
     goBack() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
     },
-    to_route(rname,arg1){ 
+    to_route(rname,arg1){   
+      console.log(rname)
       if(this.mychecked){
         rname=rname+'Children'
       }
-      var result= this.$router.replace({ name: rname, params: { uid: arg1,uname:arg1+'name' },query: { utime: (new Date()).getTime() }})
+      var result = this.$router.push({ name: rname, params: { uid: arg1,uname:arg1+'name' },query: { utime: (new Date()).getTime() }})
       result.then((r)=>{
         console.log(r.matched)
         if(r.matched.length<=0)
           this.$router.push('404')
-      })
-      
+      }) 
+        console.log(result)
     }
   },
   watch: {
-    $route(to, from) { 
-      console.log(from)
-      console.log(to)
-      console.log(this.$route)
+    $route() { 
       this.myroute={path:this.$route.path,params:this.$route.params,query:this.$route.query}
     }
   }

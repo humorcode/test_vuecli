@@ -14,6 +14,7 @@ Vue.use(VueRouter)
  import User from './components/User.vue'
  import UserChildren from './components/UserChildren.vue'
  import ZJ_Param from './components/ZJ_Param.vue'
+ import Login from './components/Login.vue'
 
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是
@@ -21,7 +22,8 @@ Vue.use(VueRouter)
 // 或者，只是一个组件配置对象。
 // 我们晚点再讨论嵌套路由。
 const routes = [
-  { name:'HOME', path: '/', components: {
+  {name:'Login',path:'/Login',alias: '/',component:Login},
+  { name:'HOME', path: '/HOME', components: {
       a:Foo,
       b:Bar,
       c:User,
@@ -52,7 +54,22 @@ const router = new VueRouter({
 //   router
 // }).$mount('#app')
 
-
+router.beforeEach((to, from, next) => { //全局前置 导航守卫  
+  console.log('全局前置 导航守卫',from,to)
+  let isAuthenticated = true
+  var result = null
+  if (to.name !== 'Login' && !isAuthenticated) result=next({ name: 'Login',query:{utime:new Date().getTime()} })
+  else result=next() 
+  console.log(result)
+ 
+})
+router.beforeResolve((to, from, next) => {
+  console.log('全局解析 导航守卫',from,to) 
+  next() 
+})
+router.afterEach((to, from) => {
+  console.log('全局后置钩子',from,to) 
+})
 
 export default {
     name: 'myrouter',router
