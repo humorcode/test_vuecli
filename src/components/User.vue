@@ -1,0 +1,19 @@
+<template>
+      <div>
+        <div>我是{{this.$route.params}}</div>
+        <router-view></router-view>
+      </div>
+</template>
+
+<script> 
+export default {
+  name: 'User' , 
+    beforeRouteUpdate (to, from,next) {
+      // 对路由变化作出响应...
+      // console.log(from)
+      // console.log(to)
+      // console.log(next) 
+      next()
+    } 
+}
+</script> 

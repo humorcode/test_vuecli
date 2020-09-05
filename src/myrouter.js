@@ -7,8 +7,12 @@ Vue.use(VueRouter)
 //   runtime模式（运行时,该模式不能动态编译template,.vue文件可以预编译为函数渲染）
 // const Foo = { template: '<div>foo</div>' }
 // const Bar = { template: '<div>bar</div>' }
+ import C404 from './components/404.vue'
  import Foo from './components/Foo.vue'
  import Bar from './components/Bar.vue'
+ import HelloWorld from './components/HelloWorld.vue'
+ import User from './components/User.vue'
+ import UserChildren from './components/UserChildren.vue'
 
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是
@@ -16,8 +20,17 @@ Vue.use(VueRouter)
 // 或者，只是一个组件配置对象。
 // 我们晚点再讨论嵌套路由。
 const routes = [
-  { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar }
+  { name:'HOME', path: '/', components: {
+      a:Foo,
+      b:Bar,
+      c:User,
+      }},
+  { name:'Foo', path: '/Foo', component: Foo },
+  { name:'Bar', path: '/Bar', component: Bar },
+  { name:'HelloWorld', path: '/HelloWorld', component: HelloWorld },
+  { name:'User', path: '/User/:uid/name/:uname', component: User , 
+    children:[{name:'UserChildren', path:'child',component:UserChildren}]},
+  { name:'*', path:'*',component:C404}
 ]
 // 3. 创建 router 实例，然后传 `routes` 配置
 // 你还可以传别的配置参数, 不过先这么简单着吧。

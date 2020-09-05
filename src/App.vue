@@ -1,40 +1,61 @@
 <template>
-      <div id="app">
-        <h1>Hello App!{{myroute.path}}</h1>
-        <h4>当前路由对象{{myroute}}</h4>
+      <div id="app"> 
+        <h4>路径={{myroute?myroute.path:'null'}};<br/>当前路由对象={{myroute}}</h4>
         <button @click="goBack">路由历史回退</button>
         <p>
           <!-- 使用 router-link 组件来导航. -->
           <!-- 通过传入 `to` 属性指定链接. -->
           <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
-          <router-link to="/foo?a=a">Go to Foo.   </router-link>  
-          <router-link to="/bar">Go to Bar.   </router-link>
+            声明式
+          <router-link to="/HelloWorld">HelloWorld.   </router-link>
+          <router-link to="/Foo?a=a">Foo.   </router-link>  
+          <router-link to="/Bar">Bar.   </router-link>
+          <router-link to="/User/uid123/name/uname123/child">User123+Child   </router-link>
+          <router-link to="/User/uid456/name/uname456">User456.   </router-link>
         </p>
+        <p>编程式 
+          <button @click="to_route('HOME')">HOME</button>
+          <button @click="to_route('Foo')">Foo</button>
+          <button @click="to_route('User','123')">User123</button>
+          <button @click="to_route('User','456')">User456</button>
+          <input type="checkbox" id="User+Child" v-model="mychecked" />
+           <label for="User+Child" >User+Child</label>
+          </p>
+        <hr/>
         <!-- 路由出口 -->
         <!-- 路由匹配到的组件将渲染在这里 -->
         <router-view></router-view>
+        <hr/>
+        <router-view name="a"></router-view>
+        <router-view name="b"></router-view>
+        <router-view name="c"></router-view>
       </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 import myrouter from './myrouter'
 
 export default {
-  name: 'App',
-  components: {
-    // HelloWorld
-  },
+  name: 'App', 
+  data: function(){return {myroute:null,mychecked:false}},
   router:myrouter.router,
-  computed: {
-    myroute() {
-      // 我们很快就会看到 `params` 是什么
-      return this.$route   
-    }
-  },
   methods: {
     goBack() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
+    },
+    to_route(rname,arg1){ 
+      if(this.mychecked){
+        rname=rname+'Children'
+      }
+        this.$router.replace({ name: rname, params: { uid: arg1,uname:arg1+'name' },query: { utime: (new Date()).getTime() }})
+    }
+  },
+  watch: {
+    $route(to, from) { 
+      console.log(from)
+      console.log(to)
+      console.log(this.$route)
+      this.myroute={path:this.$route.path,params:this.$route.params,query:this.$route.query}
     }
   }
 }
@@ -47,6 +68,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
 }
 </style>
