@@ -23,7 +23,7 @@ Vue.use(VueRouter)
 // 我们晚点再讨论嵌套路由。
 const routes = [
   {name:'Login',path:'/Login',alias: '/',component:Login},
-  { name:'HOME', path: '/HOME', components: {
+  { name:'HOME', path: '/HOME',meta: { requiresAuth: true }, components: {
       a:Foo,
       b:Bar,
       c:User,
@@ -56,6 +56,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => { //全局前置 导航守卫  
   console.log('全局前置 导航守卫',from,to)
+  //--------------------------------
+  if(to.matched.some(route=>route.meta.requiresAuth)){
+    // if (!auth.loggedIn()) {
+      // next({ path: '/login', query: { redirect: to.fullPath } })
+    // }
+  }
+  //--------------------------------
   let isAuthenticated = true
   var result = null
   if (to.name !== 'Login' && !isAuthenticated) result=next({ name: 'Login',query:{utime:new Date().getTime()} })
