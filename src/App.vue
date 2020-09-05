@@ -21,14 +21,20 @@
           <input type="checkbox" id="User+Child" v-model="mychecked" />
            <label for="User+Child" >User+Child</label>
           </p>
+          <p>组件传参 
+              <router-link to="/ZJ_Param1/uname789">组件传参(布尔模式)</router-link>
+              <router-link to="/ZJ_Param2/uname789">组件传参(对象模式)</router-link>
+              <router-link to="/ZJ_Param3?uname=u147">组件传参(函数模式)</router-link>
+          </p>
         <hr/>
         <!-- 路由出口 -->
         <!-- 路由匹配到的组件将渲染在这里 -->
         <router-view></router-view>
         <hr/>
-        <router-view name="a"></router-view>
-        <router-view name="b"></router-view>
-        <router-view name="c"></router-view>
+        <router-view name="a">a</router-view>
+        <router-view name="b">b</router-view>
+        <router-view name="c">c</router-view>
+        <hr/>
       </div>
 </template>
 
@@ -47,7 +53,13 @@ export default {
       if(this.mychecked){
         rname=rname+'Children'
       }
-        this.$router.replace({ name: rname, params: { uid: arg1,uname:arg1+'name' },query: { utime: (new Date()).getTime() }})
+      var result= this.$router.replace({ name: rname, params: { uid: arg1,uname:arg1+'name' },query: { utime: (new Date()).getTime() }})
+      result.then((r)=>{
+        console.log(r.matched)
+        if(r.matched.length<=0)
+          this.$router.push('404')
+      })
+      
     }
   },
   watch: {

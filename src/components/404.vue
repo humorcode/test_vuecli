@@ -1,3 +1,3 @@
 <template>
-    <h1>404</h1>
+    <h1>重定向到404</h1>
 </template>

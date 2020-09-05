@@ -13,6 +13,7 @@ Vue.use(VueRouter)
  import HelloWorld from './components/HelloWorld.vue'
  import User from './components/User.vue'
  import UserChildren from './components/UserChildren.vue'
+ import ZJ_Param from './components/ZJ_Param.vue'
 
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是
@@ -29,12 +30,18 @@ const routes = [
   { name:'Bar', path: '/Bar', component: Bar },
   { name:'HelloWorld', path: '/HelloWorld', component: HelloWorld },
   { name:'User', path: '/User/:uid/name/:uname', component: User , 
-    children:[{name:'UserChildren', path:'child',component:UserChildren}]},
-  { name:'*', path:'*',component:C404}
+        children:[{name:'UserChildren', path:'child',component:UserChildren}]},
+  // { name:'404', path:'/404',redirect:'/40401'},
+  { name:'40401',alias: '/404', path:'/40401',component:C404},
+  { path:'/ZJ_Param1/:uname',component: ZJ_Param, props: true},
+  { path:'/ZJ_Param2/:uname',component: ZJ_Param, props: {uname:'uname78910'}},
+  { path:'/ZJ_Param3',component: ZJ_Param, props: (r)=>({uname:r.query.uname})}
 ]
 // 3. 创建 router 实例，然后传 `routes` 配置
 // 你还可以传别的配置参数, 不过先这么简单着吧。
 const router = new VueRouter({
+  base: '/myvuerouter',
+  mode: 'history',
   routes // (缩写) 相当于 routes: routes
 })
 // 4. 创建和挂载根实例。
