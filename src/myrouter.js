@@ -15,7 +15,8 @@ Vue.use(VueRouter)
  import UserChildren from './components/UserChildren.vue'
  import ZJ_Param from './components/ZJ_Param.vue'
  import Login from './components/Login.vue'
- import FetchData from './components/FetchData.vue'
+ import FetchData01 from './components/FetchData01.vue'
+ import FetchData02 from './components/FetchData02.vue'
 
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是
@@ -39,7 +40,8 @@ const routes = [
   { path:'/ZJ_Param1/:uname',component: ZJ_Param, props: true},
   { path:'/ZJ_Param2/:uname',component: ZJ_Param, props: {uname:'uname78910'}},
   { path:'/ZJ_Param3',component: ZJ_Param, props: (r)=>({uname:r.query.uname})},
-  { name:'FetchData', path:'/FetchData',component: FetchData},
+  { name:'FetchData01', path:'/FetchData01',component: FetchData01},
+  { name:'FetchData02', path:'/FetchData02',component: FetchData02},
 ]
 // 3. 创建 router 实例，然后传 `routes` 配置
 // 你还可以传别的配置参数, 不过先这么简单着吧。

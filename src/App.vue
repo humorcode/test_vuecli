@@ -25,7 +25,8 @@
               <router-link to="/ZJ_Param1/uname789">组件传参(布尔模式)</router-link>
               <router-link to="/ZJ_Param2/uname789">组件传参(对象模式)</router-link>
               <router-link to="/ZJ_Param3?uname=u147">组件传参(函数模式)</router-link><br/>
-              <button @click="to_route('FetchData')">FetchData</button>
+              <button @click="to_route('FetchData01')">获取数据(路由后,组件创建后)</button>
+              <button @click="to_route('FetchData02')">获取数据(路由前)</button>
           </p>
         <hr/>
         <!-- 路由出口 -->
