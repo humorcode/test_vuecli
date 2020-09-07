@@ -47,7 +47,7 @@ const routes = [
 // 你还可以传别的配置参数, 不过先这么简单着吧。
 const router = new VueRouter({
   base: '/myvuerouter',
-  mode: 'history',
+  // mode: 'history',
   routes // (缩写) 相当于 routes: routes
 })
 // 4. 创建和挂载根实例。
