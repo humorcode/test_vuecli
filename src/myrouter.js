@@ -7,16 +7,24 @@ Vue.use(VueRouter)
 //   runtime模式（运行时,该模式不能动态编译template,.vue文件可以预编译为函数渲染）
 // const Foo = { template: '<div>foo</div>' }
 // const Bar = { template: '<div>bar</div>' }
- import C404 from './components/404.vue'
- import Foo from './components/Foo.vue'
- import Bar from './components/Bar.vue'
- import HelloWorld from './components/HelloWorld.vue'
- import User from './components/User.vue'
- import UserChildren from './components/UserChildren.vue'
- import ZJ_Param from './components/ZJ_Param.vue'
- import Login from './components/Login.vue'
- import FetchData01 from './components/FetchData01.vue'
- import FetchData02 from './components/FetchData02.vue'
+
+/* 异步组件 vue异步组件技术 */ 
+// const C404 = () => Promise.resolve(resolve => require(['./components/404.vue'], resolve))/* vue异步组件技术 */ 
+//异步组件 es提案的import() 把组件按组分块
+const User =  () => import(/* webpackChunkName: 'user_group' */ '@/components/User.vue')//es提案的import() 把组件按组分块
+const UserChildren =  () => import(/* webpackChunkName: 'user_group' */ '@/components/UserChildren.vue')//es提案的import() 把组件按组分块
+const C404 =  () => import(/* webpackChunkName: 'C404_group' */ '@/components/404.vue')
+const HelloWorld =  () => import(/* webpackChunkName: 'Hello_group' */ '@/components/HelloWorld.vue')
+// 异步组件 使用webpack的require.ensure技术
+// const HelloWorld = () => Promise.resolve(r => require.ensure([], () => r(require('@/components/HelloWorld')), 'demo'))  
+
+
+import Foo from './components/Foo.vue'
+import Bar from './components/Bar.vue'
+import Login from './components/Login.vue'
+import ZJ_Param from './components/ZJ_Param.vue' 
+import FetchData01 from './components/FetchData01.vue'
+import FetchData02 from './components/FetchData02.vue'
 
 // 2. 定义路由
 // 每个路由应该映射一个组件。 其中"component" 可以是
