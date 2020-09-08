@@ -28,12 +28,15 @@
               <button @click="to_route('FetchData01')">获取数据(路由后,组件创建后)</button>
               <button @click="to_route('FetchData02')">获取数据(路由前)</button>
           </p>
+        <hr/><p>
+              <button @click="to_route('storecount01')">Vuex(Counter01)</button>
+        </p>
         <hr/>
         <!-- 路由出口 -->
         <!-- 路由匹配到的组件将渲染在这里 -->
-       <transition name="slide-fade"> <router-view></router-view></transition>
+       <transition name="slide-fade" mode="out-in">  <router-view></router-view></transition>
         <hr/>
-        <transition-group name="component-fade" mode="in-out">
+        <transition-group name="component-fade" mode="out-in">
         <router-view name="a" key="a">a</router-view>
         <router-view name="b" key="b">b</router-view>
         <router-view name="c" key="c">c</router-view>
@@ -44,11 +47,13 @@
 
 <script>
 import myrouter from './myrouter'
+import myvuex from './myvuex'
 
 export default {
   name: 'App', 
   data: function(){return {myroute:null,mychecked:false}},
   router:myrouter.router,
+  store:myvuex.store,
   methods: {
     goBack() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')

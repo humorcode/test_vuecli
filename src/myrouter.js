@@ -50,6 +50,9 @@ const routes = [
   { path:'/ZJ_Param3',component: ZJ_Param, props: (r)=>({uname:r.query.uname})},
   { name:'FetchData01', path:'/FetchData01',component: FetchData01},
   { name:'FetchData02', path:'/FetchData02',component: FetchData02},
+
+  { name:'storecount01', path:'/storecount01',component:  () =>
+         import('./com_store/Counter.vue')},
 ]
 // 3. 创建 router 实例，然后传 `routes` 配置
 // 你还可以传别的配置参数, 不过先这么简单着吧。
