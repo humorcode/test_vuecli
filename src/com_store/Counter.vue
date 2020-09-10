@@ -1,34 +1,45 @@
 <template>
-      <div><button @click="cpp">c++</button>
-      我是Counter|count01={{count01}}|countPlusLocalState={{countPlusLocalState}}|
-      countAlias:{{countAlias}}|localComputed={{localComputed}}
-      <br/> doneTodos={{doneTodos}} || doneTodosCount={{doneTodosCount}} 
-      || getTodoById={{getTodoById(2)}}
+      <div>
+        <button @click="method_mutation_cpp(1)">method mutation count+1(同步)</button>
+        <button @click="map_mutation_cpp({amount:5})">mapMutations count+5(同步)</button><br/>
+        <button @click="method_action_cpp(5)">method action count+5(异步)</button>
+        <button @click="async_map_action_cpp({amount:5})">mapActions async count+5(异步)</button>
+        <button @click="await_map_action_0001({amount:5})">mapActions await_0001 count+5(异步,等待,Promise)</button>
+        <button @click="await_map_action_0002({amount:100000})">mapActions await_0002 count+100000(异步,等待,async/await)</button>
+            <p><b>mapState =></b>
+                count={{count}}, count01={{count01}}, countAlias={{countAlias}}, 
+                countPlusLocalstate={{countPlusLocalstate}}
+            </p> 
+            <p><b>mapGetters =></b>
+                doneTodos={{doneTodos}}, doneTodosCount={{doneTodosCount}}, getTodoById={{getTodoById(2)}}
+            </p>
       </div>
 </template>
 
 <script> 
-import { mapState,mapGetters } from 'vuex';
+import { mapState,mapGetters, mapMutations, mapActions } from 'vuex';
 export default {
   name: 'Counter',
-  data:function(){return{localCount:44,getTodoById01:'null'}},
+  data:function(){return{localCount:44}},
   computed: {
-      localComputed(){
-        return this.localCount
-      },
+      ...mapGetters(['doneTodos','doneTodosCount','getTodoById']),
+      ...mapState(['count']),
       ...mapState({ 
         count01:state => state.count,
         countAlias: 'count',
-        countPlusLocalState(statearg){
-          return statearg.count+this.localCount
-        }
-      }),
-      ...mapGetters(['doneTodos','doneTodosCount','getTodoById'])
+        countPlusLocalstate(_state){ return _state.count+this.localCount }
+      })
   },
   methods:{
-    cpp:function(){
-      this.$store.commit("increment")
-    }
+    method_mutation_cpp:function(i){ this.$store.commit({type:'increment',amount:i})},
+    ...mapMutations({map_mutation_cpp:'increment'}),
+    method_action_cpp:function(i){ this.$store.dispatch({type:'increment',amount:i})},
+    ...mapActions({async_map_action_cpp:'incrementAsync',
+        await_map_action_0001:'incrementAwait_0001',
+        await_map_action_0002:'incrementAwait_0002'}),
   }
 }
 </script> 
+<style>
+ div {text-align : left}
+</style>
