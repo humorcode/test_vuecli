@@ -7,7 +7,7 @@ Vue.filter('timefilter', timestamp => {
     return new Date(timestamp).toLocaleTimeString()
 })
 
-export function render() {
+export function ex_chat_render() {
     new Vue({
         el: '#ex_chat',
         store,

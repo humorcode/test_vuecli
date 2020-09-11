@@ -8,5 +8,8 @@ new Vue({
 }).$mount('#app')
 
 // -----------------------------
-import { render } from './ex_chat/ex_chat'
-render()
+import { ex_chat_render } from './ex_chat/ex_chat'
+ex_chat_render();
+// -----------------------------
+import { ex_shopping_cart_render } from './ex_shopping_cart/ex_shopping_cart'
+ex_shopping_cart_render();

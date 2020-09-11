@@ -1,8 +1,11 @@
 <style src="../css/chat.css"></style>
 <template>
-  <div class="chatapp">
+  <div><div class="chatapp">
     <thread-section></thread-section>
     <message-section></message-section>
+    </div>
+    <hr/>
+    <hr/>
   </div>
 </template>
 <script>
