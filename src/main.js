@@ -13,3 +13,7 @@ ex_chat_render();
 // -----------------------------
 import { ex_shopping_cart_render } from './ex_shopping_cart/ex_shopping_cart'
 ex_shopping_cart_render();
+// -----------------------------
+import { ex_todomvc_render } from './ex_todomvc/ex_todomvc'
+ex_todomvc_render();
+// -----------------------------
