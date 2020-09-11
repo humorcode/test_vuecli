@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "express-ws": "^4.0.0",
     "todomvc-app-css": "^2.3.0",
     "vue": "^2.6.11",
     "vue-router": "^3.4.3",
