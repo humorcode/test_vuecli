@@ -20,6 +20,8 @@
               <b>孙子 =></b> 年龄={{grandson_age}} <br/>
               <b>爷爷 =></b> 年龄={{grandfather_age}}
             </p>
+      <hr/> 
+            <input v-model="vuex_message"><div style="word-break:break-all">{{vuex_message}}</div>
       </div>
 </template>
 
@@ -38,7 +40,11 @@ export default {
         countPlusLocalstate(_state){ return _state.count+this.localCount },
         grandfather_age:'age'
       }),
-      ...mapGetters('father/grandson',['grandson_age'])
+      ...mapGetters('father/grandson',['grandson_age']),
+      vuex_message:{
+        get(){return this.$store.getters['father/grandson/vuex_grandson_message']},
+        set(value){this.$store.dispatch({type:'father/grandson/set_vuex_grandson_message',msg:value})}
+      }
   },
   methods:{
     method_mutation_cpp:function(i){ this.$store.commit({type:'increment',amount:i})},

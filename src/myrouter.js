@@ -84,7 +84,7 @@ const router = new VueRouter({
             return new Promise((resolve) => { //异步滚动
                     setTimeout(() => {
                         resolve({ x: 1000, y: 1000 })
-                    }, 5000)
+                    }, 1200)
                 })
                 // if (savedPosition) {
                 //   return savedPosition

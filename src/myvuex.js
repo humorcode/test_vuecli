@@ -4,7 +4,16 @@ import storefather from './com_store/vuex.module'
 
 Vue.use(Vuex)
 
+const myPlugin = store => {
+    console.log('当 store 初始化, 开启严格模式')
+    let c = 0
+    store.subscribe((mutation, state) => {
+        console.log(++c, '每次 mutation 之后调用', mutation, state)
+    })
+}
+
 const store = new Vuex.Store({
+    strict: true,
     state: {
         count: 100,
         todos: [{ id: 1, text: '.1..', done: true }, { id: 2, text: '.2..', done: false }],
@@ -67,7 +76,8 @@ const store = new Vuex.Store({
     },
     modules: {
         father: storefather.father
-    }
+    },
+    plugins: [myPlugin]
 })
 
 
