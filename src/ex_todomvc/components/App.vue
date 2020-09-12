@@ -1,5 +1,4 @@
-<style src="todomvc-app-css/index.css"></style>
-
+<style src="todomvc-app-css/index.css" scoped></style>
 <template>
   <section class="todoapp">
     <!-- header -->
@@ -8,7 +7,7 @@
       <input class="new-todo"
         autofocus
         autocomplete="off"
-        placeholder="What needs to be done?"
+        placeholder="存储到 Local Storage?"
         @keyup.enter="addTodo">
     </header>
     <!-- main section -->
@@ -34,7 +33,7 @@
       </span>
       <ul class="filters">
         <li v-for="(val, key) in filters" :key="key">
-          <a :href="'#/' + key"
+          <a
             :class="{ selected: visibility === key }"
             @click="visibility = key">{{ key | capitalize }}</a>
         </li>
