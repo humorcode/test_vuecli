@@ -14,7 +14,7 @@ app.ws('/mywebsocket/ws', function(ws, request, next) {
     })
 })
 app.get('/mywebsocket', (req, res) => {
-    res.send("首页,跳转到<a href='./ws.index.html'>websocket</a>")
+    res.send("首页,跳转到<a href='mywebsocket/ws.index.html'>websocket</a>")
 })
 app.use('/mywebsocket', express.static('websocket'));
 app.listen(port, function() { console.log("- Local: [ http://localhost:" + port + "/mywebsocket ]") });
