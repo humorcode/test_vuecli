@@ -6,13 +6,11 @@
         <button @click="async_map_action_cpp({amount:5})">mapActions async count+5(异步)</button>
         <button @click="await_map_action_0001({amount:5})">mapActions await_0001 count+5(异步,等待,Promise)</button>
         <button @click="await_map_action_0002({amount:100000})">mapActions await_0002 count+100000(异步,等待,async/await)</button>
-            <p><b>mapState =></b>
+            <p><b>mapState =></b> <b>localCount={{localCount}}</b>
                 count={{count}}, count01={{count01}}, countAlias={{countAlias}}, 
                 countPlusLocalstate={{countPlusLocalstate}}
             </p> 
-            <p><b>mapGetters =></b>
-                doneTodos={{doneTodos}}, doneTodosCount={{doneTodosCount}}, getTodoById={{getTodoById(2)}}
-            </p>
+            
       <hr/> 
           <button @click="grandson_age_plus">孙子+1</button>
           <button @click="grandfather_age_plus">爷爷+1</button>
@@ -21,7 +19,10 @@
               <b>爷爷 =></b> 年龄={{grandfather_age}}
             </p>
       <hr/> 
-            <input v-model="vuex_message"><div style="word-break:break-all">{{vuex_message}}</div>
+            <div style="word-break:break-all"><p><b>mapGetters =></b>
+                doneTodos={{doneTodos}}, doneTodosCount={{doneTodosCount}}, getTodoById={{getTodoById(2)}}<br/><br/>
+                <input v-model="vuex_message">
+            </p>{{vuex_message}}</div>
       </div>
 </template>
 

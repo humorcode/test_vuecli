@@ -25,11 +25,11 @@ const store = new Vuex.Store({
         getTodoById: (state) => (id) => { return state.todos.find(todo => todo.id === id) }
     },
     mutations: {
-        increment(state, payload) { state.count += payload.amount },
+        increment(state, payload) { console.log("mutations=increment"); state.count += payload.amount },
         grandfather_age_plus(state) { state.age++ }
     },
     actions: {
-        increment({ commit }, payload) { commit('increment', payload); return '00.result' },
+        increment({ commit }, payload) { console.log("actions=increment"); commit('increment', payload); return '00.result' },
         incrementAsync({ commit }, payload) { setTimeout(() => { commit('increment', payload) }, 1000); },
         increment_01({ commit }, payload) {
             return new Promise((resolve) => {

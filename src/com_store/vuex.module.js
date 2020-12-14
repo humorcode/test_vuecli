@@ -3,7 +3,7 @@ const father = {
     modules: {
         grandson: {
             namespaced: true,
-            state: () => ({ age: 2, vuex_grandson_message: 'vuex_grandson_message' }),
+            state: () => ({ age: 2, vuex_grandson_message: '孙子的信息' }),
             getters: {
                 grandson_age(state) { return state.age }, // -> grandson/age
                 vuex_grandson_message(state) { return state.vuex_grandson_message }, // -> grandson/age
@@ -14,6 +14,7 @@ const father = {
             },
             actions: {
                 grandfather_age_plus({ commit }) { // action/mutation
+                    console.log("grandson=>grandfather_age_plus");
                     commit('grandfather_age_plus', null, { root: true }) // 访问全局
                 },
                 grandson_age_plus: {
