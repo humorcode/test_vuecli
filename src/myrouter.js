@@ -74,24 +74,24 @@ const router = new VueRouter({
         // mode: 'history',
         routes // (缩写) 相当于 routes: routes
         ,
-        scrollBehavior() {
-            console.log('scrollBehavior================================滚动到锚点')
-                // if (to.hash) {
-                //   return {
-                //     selector: to.hash
-                //   }
-                // }
-            return new Promise((resolve) => { //异步滚动
-                    setTimeout(() => {
-                        resolve({ x: 1000, y: 1000 })
-                    }, 1200)
-                })
-                // if (savedPosition) {
-                //   return savedPosition
-                // } else {
-                //   return { x: 1000, y: 1000 }
-                // }
-        }
+        // scrollBehavior() {
+        //     console.log('scrollBehavior================================滚动到锚点')
+        //         // if (to.hash) {
+        //         //   return {
+        //         //     selector: to.hash
+        //         //   }
+        //         // }
+        //     return new Promise((resolve) => { //异步滚动
+        //             setTimeout(() => {
+        //                 resolve({ x: 1000, y: 1000 })
+        //             }, 1200)
+        //         })
+        //         // if (savedPosition) {
+        //         //   return savedPosition
+        //         // } else {
+        //         //   return { x: 1000, y: 1000 }
+        //         // }
+        // }
     })
     // 4. 创建和挂载根实例。
     // 记得要通过 router 配置参数注入路由，
