@@ -7,13 +7,14 @@
           <!-- 通过传入 `to` 属性指定链接. -->
           <!-- <router-link> 默认会被渲染成一个 `<a>` 标签 -->
             声明式
+          <router-link to="/">LOGIN.   </router-link>
           <router-link to="/HelloWorld">HelloWorld.   </router-link>
           <router-link to="/Foo?a=a">Foo.   </router-link>  
           <router-link to="/Bar">Bar.   </router-link>
           <router-link to="/User/uid123/name/uname123/child">User123+Child   </router-link>
           <router-link to="/User/uid456/name/uname456">User456.   </router-link>
         </p>
-        <p>编程式 
+        <p> 
           <button @click="to_route('HOME')">HOME</button>
           <button @click="to_route('Foo')">Foo</button>
           <button @click="to_route('User','123')">User123</button>

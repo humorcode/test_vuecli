@@ -103,6 +103,11 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => { //全局前置 导航守卫  
     console.log('全局前置 导航守卫', from, to)
+    //--------------------------------
+    if(to.matched.length<=0){
+        next('/404')
+        return;
+    }
         //--------------------------------
     if (to.matched.some(route => route.meta.requiresAuth)) {
         // if (!auth.loggedIn()) {
